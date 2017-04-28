@@ -1,0 +1,20 @@
+{
+  "name": "bambu-commits",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node -r dotenv/config server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tim",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
+    "hapi": "^16.1.1",
+    "inert": "^4.2.0",
+    "vision": "^4.1.1",
+    "wreck": "^12.1.0"
+  }
+}

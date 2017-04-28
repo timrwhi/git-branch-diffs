@@ -1,0 +1,141 @@
+<html>
+    <head>
+        <title>Stuff</title>
+        <style>
+            html {
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                color: #333;
+                background-color: #f5f5f5;
+            }
+            body {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            h1 {
+                margin: 40px 0;
+                text-align: center;
+            }
+            img {
+                height: 40px;
+                min-width: 40px;
+                background-image: url(http://dummyimage.com/20x20);
+                background-size: cover;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            a {
+                color: #333;
+            }
+            .commit {
+                font-size: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+            .commit:hover {
+                background-color: #f5f5f5;
+            }
+            .commit-left {
+                display: flex;
+                align-items: center;
+            }
+            .message, .timestamp {
+                padding: 10px;
+                min-width: 160px;
+            }
+            .login-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                background-color: white;
+                border-radius: 3px;
+                padding: 50px;
+                margin: 50px auto;
+                max-width: 400px;
+            }
+            .login-wrapper p {
+                text-align: center;
+                margin: 20px 0;
+                line-height: 30px;
+            }
+            .login-wrapper .btn {
+                margin: 20px 0;
+            }
+            .btn {
+                background-color: #333;
+                color: white;
+                border-radius: 3px;
+                padding: 16px 32px;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            .btn-sm {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+            .tag {
+                padding: 4px 8px;
+                background-color: deeppink;
+                border-radius: 3px;
+                color: white;
+                font-size: 11px;
+                white-space: nowrap;
+            }
+            .tag.bloom-web {
+                background-color: #11a7aa;
+            }
+            .tag.bloom-api {
+                background-color: #b07219;
+            }
+            .tag.bloom-mobile {
+                background-color: #438eff;
+            }
+            .hidden-commits-toggle {
+                text-align: center;
+                margin: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/javascript">
+            window.repos = <%= repos %>;
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dot/1.1.0/doT.min.js"></script>
+        <script type="text/x-dot-template" id="page">
+            <h1>This stuff is waiting to go to Production</h1>
+            <div id="commits"></div>
+            {{? it.hidden > 0 }}
+            <p class="hidden-commits-toggle">
+                <span>{{=it.hidden}} commits hidden</span>
+                <a class="btn btn-sm" onClick="renderAllCommits()">Show All</a>
+            </p>
+            {{?}}
+        </script>
+        <script type="text/x-dot-template" id="commit">
+            <div class="commit-left">
+                <img style="background-image: url({{=it.author.avatar_url}})"/>
+                <div class="tag {{=it.repo}}">{{=it.repo}}</div>
+                <a class="message" href="{{=it.html_url}}">{{=it.commit.message}}</a>
+            </div>
+            <div class="timestamp">{{=it.formattedDate}}</div>
+        </script>
+        <script type="text/x-dot-template" id="empty">
+            <p>All clear!</p>
+            <p>Production is up to date.</p>
+        </script>
+        <script type="text/x-dot-template" id="login">
+            <div class="login-wrapper">
+                <h2>What's ready for Production?</h2>
+                <p>See everything on Release (bloom-web, bloom-api, bloom-mobile) that isn't in Production yet.</p>
+                <a id="oauth" class="btn" href="https://github.com/login/oauth/authorize?client_id=274b04935a06e2e9615b&scope=repo">
+                    Log In with github
+                </a>
+            </div>
+        </script>
+        <script src="/main.js"></script>
+    </body>
+</html>
