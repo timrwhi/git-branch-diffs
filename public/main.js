@@ -4,7 +4,7 @@ const fetchConfig = {
     method: 'GET',
     headers: headers,
     mode: 'cors',
-    cache: 'default'
+    cache: 'default',
 };
 
 
